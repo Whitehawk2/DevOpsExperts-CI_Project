@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module db_connector</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>db_connector</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/whitehawk/PycharmProjects/Test/DevOps%20Experts/Projects/1st%20part/db_connector.py">/home/whitehawk/PycharmProjects/Test/DevOps Experts/Projects/1st part/db_connector.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;connector&nbsp;to&nbsp;handle&nbsp;mysql&nbsp;db&nbsp;related&nbsp;commits&nbsp;and&nbsp;gets.<br>
+&nbsp;<br>
+All&nbsp;functions&nbsp;can&nbsp;also&nbsp;return&nbsp;a&nbsp;500&nbsp;status&nbsp;code&nbsp;if&nbsp;there's&nbsp;an&nbsp;error&nbsp;caught<br>
+by&nbsp;the&nbsp;errorhandler&nbsp;decorator&nbsp;function.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="functools.html">functools</a><br>
+</td><td width="25%" valign=top><a href="pymysql.html">pymysql</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-delete_from_db"><strong>delete_from_db</strong></a>(payload: dict) -&gt; int</dt><dd><tt>support&nbsp;for&nbsp;DELETE&nbsp;requests.<br>
+Queries&nbsp;the&nbsp;database&nbsp;to&nbsp;delete&nbsp;the&nbsp;row&nbsp;identified&nbsp;by&nbsp;"id"&nbsp;supplied<br>
+by&nbsp;json&nbsp;payload.<br>
+&nbsp;<br>
+if&nbsp;delete&nbsp;failed&nbsp;-&nbsp;nonexistent&nbsp;id&nbsp;record&nbsp;for&nbsp;example&nbsp;-&nbsp;uses<br>
+'0&nbsp;rows&nbsp;affected'&nbsp;to&nbsp;detect&nbsp;and&nbsp;return&nbsp;fail&nbsp;state.<br>
+&nbsp;<br>
+:param&nbsp;payload:&nbsp;json/dict,&nbsp;must&nbsp;include&nbsp;"id".<br>
+:return:&nbsp;200&nbsp;status&nbsp;code&nbsp;if&nbsp;success,&nbsp;else&nbsp;500</tt></dd></dl>
+ <dl><dt><a name="-error_handler"><strong>error_handler</strong></a>(func)</dt><dd><tt>a&nbsp;wrapper&nbsp;function&nbsp;to&nbsp;handle&nbsp;errors&nbsp;in&nbsp;db&nbsp;operations.<br>
+used&nbsp;as&nbsp;decorator.<br>
+:return:&nbsp;the&nbsp;decorated&nbsp;function,&nbsp;handles&nbsp;sql/type&nbsp;errors&nbsp;and&nbsp;returns&nbsp;500<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;they&nbsp;occur&nbsp;instead.</tt></dd></dl>
+ <dl><dt><a name="-get_from_db"><strong>get_from_db</strong></a>(payload: dict)</dt><dd><tt>support&nbsp;for&nbsp;GET&nbsp;requests.<br>
+Queries&nbsp;the&nbsp;database&nbsp;to&nbsp;fetch&nbsp;USER_NAME&nbsp;from&nbsp;supplied&nbsp;id&nbsp;in<br>
+the&nbsp;payload&nbsp;json.<br>
+&nbsp;<br>
+:param&nbsp;payload:&nbsp;json/dict,&nbsp;must&nbsp;include&nbsp;"id".<br>
+:return:&nbsp;str,&nbsp;username&nbsp;corresponding&nbsp;to&nbsp;supplied&nbsp;id#&nbsp;in&nbsp;payload</tt></dd></dl>
+ <dl><dt><a name="-passwd"><strong>passwd</strong></a>() -&gt; str</dt><dd><tt>simple&nbsp;mysql&nbsp;pass&nbsp;de-abstraction</tt></dd></dl>
+ <dl><dt><a name="-post_to_db"><strong>post_to_db</strong></a>(payload: dict) -&gt; int</dt><dd><tt>support&nbsp;for&nbsp;POST&nbsp;requests.<br>
+Queries&nbsp;the&nbsp;database&nbsp;to&nbsp;insert&nbsp;a&nbsp;new&nbsp;row&nbsp;into&nbsp;users&nbsp;table&nbsp;with<br>
+the&nbsp;payload&nbsp;json.&nbsp;Also&nbsp;uses&nbsp;the&nbsp;datetime&nbsp;module&nbsp;to&nbsp;generate<br>
+current&nbsp;time&nbsp;and&nbsp;date&nbsp;as&nbsp;datetime&nbsp;for&nbsp;the&nbsp;'Creation_date'&nbsp;field.<br>
+&nbsp;<br>
+:param&nbsp;payload:&nbsp;json/dict,&nbsp;must&nbsp;include&nbsp;"id"&nbsp;and&nbsp;"user_name"<br>
+:return:&nbsp;201&nbsp;status&nbsp;code&nbsp;if&nbsp;success,&nbsp;else&nbsp;500&nbsp;via&nbsp;error&nbsp;handler&nbsp;decorator</tt></dd></dl>
+ <dl><dt><a name="-update_db"><strong>update_db</strong></a>(payload: dict) -&gt; int</dt><dd><tt>support&nbsp;for&nbsp;PUT&nbsp;requests.<br>
+Queries&nbsp;the&nbsp;database&nbsp;to&nbsp;update&nbsp;an&nbsp;existing&nbsp;row's&nbsp;username&nbsp;field<br>
+with&nbsp;a&nbsp;new&nbsp;one,&nbsp;with&nbsp;its'&nbsp;id&nbsp;and&nbsp;new&nbsp;value&nbsp;supplied&nbsp;in&nbsp;payload.<br>
+&nbsp;<br>
+if&nbsp;no&nbsp;rows&nbsp;changed&nbsp;-&nbsp;i.e,&nbsp;because&nbsp;id&nbsp;doesn't&nbsp;exist&nbsp;in&nbsp;db<br>
+or&nbsp;if&nbsp;requested&nbsp;change&nbsp;doesn't&nbsp;actually&nbsp;change&nbsp;anything<br>
+(change&nbsp;"Jane"&nbsp;to&nbsp;"Jane"),&nbsp;returns&nbsp;as&nbsp;fail.<br>
+&nbsp;<br>
+:param&nbsp;payload:&nbsp;json/dict,&nbsp;must&nbsp;include&nbsp;"id"&nbsp;and&nbsp;"user_name"<br>
+:return:&nbsp;200&nbsp;status&nbsp;code&nbsp;if&nbsp;success,&nbsp;else&nbsp;500</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CRED</strong> = {'database': 'qJAFjFrDlh', 'host': 'remotemysql.com', 'port': 3306, 'user': 'qJAFjFrDlh'}</td></tr></table>
+</body></html>

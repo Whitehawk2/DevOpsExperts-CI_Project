@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module frontend_testing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>frontend_testing</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/whitehawk/PycharmProjects/Test/DevOps%20Experts/Projects/1st%20part/frontend_testing.py">/home/whitehawk/PycharmProjects/Test/DevOps Experts/Projects/1st part/frontend_testing.py</a></font></td></tr></table>
+    <p><tt>this&nbsp;module&nbsp;is&nbsp;made&nbsp;to&nbsp;test&nbsp;the&nbsp;frontend&nbsp;part&nbsp;-&nbsp;web_app.py<br>
+&nbsp;<br>
+if&nbsp;called&nbsp;by&nbsp;<a href="#-main">main</a>(),&nbsp;uses&nbsp;hardcoded&nbsp;selenium&nbsp;driver&nbsp;(expects&nbsp;Chrome)<br>
+and&nbsp;USER_ID&nbsp;(random&nbsp;1-3).</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="selenium.webdriver.html">selenium.webdriver</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-frontend_query"><strong>frontend_query</strong></a>(exec_path, id_num)</dt><dd><tt>Queries&nbsp;the&nbsp;web&nbsp;app&nbsp;fronend&nbsp;by&nbsp;using&nbsp;headless&nbsp;chrome&nbsp;selenium&nbsp;session<br>
+to&nbsp;browse&nbsp;to&nbsp;the&nbsp;web&nbsp;app&nbsp;address&nbsp;with&nbsp;specified&nbsp;user&nbsp;id,<br>
+then&nbsp;uses&nbsp;selenium&nbsp;selector&nbsp;to&nbsp;check&nbsp;username&nbsp;was&nbsp;returned,<br>
+and&nbsp;prints&nbsp;it.<br>
+&nbsp;<br>
+if&nbsp;the&nbsp;locator&nbsp;does&nbsp;not&nbsp;have&nbsp;'user',&nbsp;fails&nbsp;the&nbsp;test.<br>
+:param&nbsp;exec_path:&nbsp;str,&nbsp;chrome&nbsp;webdriver&nbsp;exec&nbsp;path<br>
+:param&nbsp;id_num:&nbsp;int,&nbsp;the&nbsp;user_id&nbsp;to&nbsp;request&nbsp;user&nbsp;name&nbsp;by<br>
+:return:&nbsp;response&nbsp;user&nbsp;name&nbsp;if&nbsp;id&nbsp;exists,&nbsp;else&nbsp;raises&nbsp;Exception</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Main&nbsp;driver&nbsp;for&nbsp;the&nbsp;test.<br>
+Calls&nbsp;the&nbsp;testing&nbsp;function&nbsp;with&nbsp;arbitrary&nbsp;test&nbsp;args</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>APP_PATH</strong> = 'http://127.0.0.1:5001/users/get_user_data/'<br>
+<strong>PATH</strong> = '/snap/bin/chromium.chromedriver'<br>
+<strong>USER</strong> = '2'</td></tr></table>
+</body></html>

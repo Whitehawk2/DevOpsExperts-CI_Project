@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module backend_testing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>backend_testing</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/whitehawk/PycharmProjects/Test/DevOps%20Experts/Projects/1st%20part/backend_testing.py">/home/whitehawk/PycharmProjects/Test/DevOps Experts/Projects/1st part/backend_testing.py</a></font></td></tr></table>
+    <p><tt>this&nbsp;module&nbsp;is&nbsp;made&nbsp;to&nbsp;test&nbsp;the&nbsp;backend&nbsp;part&nbsp;-&nbsp;rest_app.py<br>
+(and&nbsp;db_connector&nbsp;by&nbsp;proxy)<br>
+&nbsp;<br>
+if&nbsp;started&nbsp;by&nbsp;calling&nbsp;<a href="#-main">main</a>(),&nbsp;uses&nbsp;hardcoded&nbsp;path+userid&nbsp;and&nbsp;user_name,<br>
+and&nbsp;also&nbsp;cleans&nbsp;up&nbsp;the&nbsp;DB.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top><a href="pymysql.html">pymysql</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-cleanup"><strong>cleanup</strong></a>(uid: int)</dt><dd><tt>Tidies&nbsp;the&nbsp;working&nbsp;id&nbsp;row&nbsp;from&nbsp;MySQL,&nbsp;so&nbsp;tests&nbsp;can&nbsp;use&nbsp;the&nbsp;id<br>
+freely.<br>
+:param&nbsp;uid:&nbsp;int,&nbsp;arbitrary&nbsp;uid&nbsp;to&nbsp;clean&nbsp;before&nbsp;testing&nbsp;on</tt></dd></dl>
+ <dl><dt><a name="-fail"><strong>fail</strong></a>()</dt><dd><tt>used&nbsp;as&nbsp;a&nbsp;shorthand&nbsp;to&nbsp;raise&nbsp;exception&nbsp;of&nbsp;test&nbsp;failure</tt></dd></dl>
+ <dl><dt><a name="-get_from_db_api"><strong>get_from_db_api</strong></a>(path: str, username)</dt><dd><tt>posts&nbsp;to&nbsp;rest_app&nbsp;via&nbsp;GET&nbsp;method<br>
+uses&nbsp;address&nbsp;parameter&nbsp;as&nbsp;well&nbsp;as&nbsp;sending&nbsp;username&nbsp;as&nbsp;json<br>
+to&nbsp;check&nbsp;expected&nbsp;reply&nbsp;from&nbsp;db.<br>
+:param&nbsp;path:&nbsp;str,&nbsp;path&nbsp;to&nbsp;api&nbsp;address&nbsp;at&nbsp;required&nbsp;uid<br>
+:param&nbsp;username:&nbsp;str,&nbsp;username&nbsp;to&nbsp;set&nbsp;at&nbsp;uid<br>
+:raises&nbsp;fail&nbsp;exception&nbsp;if&nbsp;can't&nbsp;GET,&nbsp;user&nbsp;is&nbsp;not&nbsp;as&nbsp;expected,&nbsp;or&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status&nbsp;code&nbsp;is&nbsp;not&nbsp;200&nbsp;(ok)</tt></dd></dl>
+ <dl><dt><a name="-get_from_mysql"><strong>get_from_mysql</strong></a>(uid: int, username)</dt><dd><tt>Queries&nbsp;the&nbsp;db&nbsp;directly&nbsp;to&nbsp;double&nbsp;check&nbsp;actual&nbsp;mysql&nbsp;username<br>
+fits&nbsp;uid&nbsp;as&nbsp;expected.<br>
+&nbsp;<br>
+uses&nbsp;uid&nbsp;to&nbsp;query,&nbsp;and&nbsp;evaluates&nbsp;answer&nbsp;against&nbsp;supplied&nbsp;expected<br>
+username.<br>
+&nbsp;<br>
+:param&nbsp;uid:&nbsp;int,&nbsp;the&nbsp;uid&nbsp;of&nbsp;username&nbsp;to&nbsp;query<br>
+:param&nbsp;username:&nbsp;str,&nbsp;username&nbsp;expected&nbsp;at&nbsp;uid<br>
+:raises&nbsp;fail&nbsp;exception&nbsp;if&nbsp;expected&nbsp;username&nbsp;=&nbsp;username&nbsp;from&nbsp;MySQL</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>main&nbsp;driver&nbsp;for&nbsp;the&nbsp;test&nbsp;itself,<br>
+Calls&nbsp;testing&nbsp;functions&nbsp;with&nbsp;arbitrary&nbsp;args.</tt></dd></dl>
+ <dl><dt><a name="-passwd"><strong>passwd</strong></a>() -&gt; str</dt><dd><tt>simple&nbsp;mysql&nbsp;pass&nbsp;de-abstraction</tt></dd></dl>
+ <dl><dt><a name="-post_2_db_api"><strong>post_2_db_api</strong></a>(path: str, username)</dt><dd><tt>posts&nbsp;to&nbsp;rest_app&nbsp;via&nbsp;POST&nbsp;method.<br>
+uses&nbsp;address&nbsp;parameter&nbsp;as&nbsp;well&nbsp;as&nbsp;sending&nbsp;username&nbsp;as&nbsp;json<br>
+:param&nbsp;path:&nbsp;str,&nbsp;path&nbsp;to&nbsp;api&nbsp;address&nbsp;at&nbsp;required&nbsp;uid<br>
+:param&nbsp;username:&nbsp;str,&nbsp;username&nbsp;to&nbsp;set&nbsp;at&nbsp;uid<br>
+:raises&nbsp;fail&nbsp;exception&nbsp;if&nbsp;post&nbsp;unsuccessful&nbsp;via&nbsp;<a href="#-fail">fail</a>()</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>APP_PATH</strong> = 'http://127.0.0.1:5000/users/20'<br>
+<strong>CRED</strong> = {'database': 'qJAFjFrDlh', 'host': 'remotemysql.com', 'port': 3306, 'user': 'qJAFjFrDlh'}<br>
+<strong>USER_NAME</strong> = 'Jack'</td></tr></table>
+</body></html>
