@@ -13,7 +13,7 @@ pipeline {
                 script {
                     properties([pipelineTriggers([pollSCM('H/30 * * * *')])])
                 }
-                git 'git@github.com:Whitehawk2/DevOpsExperts-CI_Project.git'
+                
             }
         }
         stage('prepare python environment') {
