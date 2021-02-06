@@ -8,7 +8,7 @@ pipeline {
         SECRET = credentials('Mysql-access')
     }
     stages {
-        stage('set git poll') {
+        stage('Checkout SCM') {
             steps {
                 script {
                     properties([pipelineTriggers([pollSCM('H/30 * * * *')])])
