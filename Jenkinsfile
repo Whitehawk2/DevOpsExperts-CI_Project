@@ -8,12 +8,11 @@ pipeline {
         SECRET = credentials('Mysql-access')
     }
     stages {
-        stage('get git') {
+        stage('set git poll') {
             steps {
                 script {
                     properties([pipelineTriggers([pollSCM('H/30 * * * *')])])
                 }
-                
             }
         }
         stage('prepare python environment') {
