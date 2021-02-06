@@ -3,6 +3,10 @@ pipeline {
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '20')
     }
+    environment {
+        // use the password as a global env var
+        SECRET = credentials('Mysql-access')
+    }
     stages {
         stage('get git') {
             steps {
@@ -26,24 +30,17 @@ pipeline {
         }
         stage('run rest_app') {
             steps {
-                withCredentials([string(credentialsId: 'Mysql-access', variable: 'SECRET')]) {
-                    Python_nohup("./rest_app.py")
-                }
-            }   
+                Python_nohup("./rest_app.py")
+            }
         }
         stage('run web_app') {
             steps {
-                withCredentials([string(credentialsId: 'Mysql-access', variable: 'SECRET')]) {
                 Python_nohup("./web_app.py")
-            
-                }
             }
         }
         stage('Backend tests') {
             steps {
-                withCredentials([string(credentialsId: 'Mysql-access', variable: 'SECRET')]) {
-                    Py_venv("./backend_testing.py")
-                }
+                Py_venv("./backend_testing.py")
             }
         }
         stage('Frontend tests') {
@@ -53,9 +50,7 @@ pipeline {
         }
         stage('Combined tests') {
             steps {
-                withCredentials([string(credentialsId: 'Mysql-access', variable: 'SECRET')]) {
-                    Py_venv("./combined_testing.py")
-                }
+                Py_venv("./combined_testing.py")
             }
         }
         stage('Shut down') {
