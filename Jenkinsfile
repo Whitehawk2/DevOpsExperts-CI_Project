@@ -6,6 +6,7 @@ pipeline {
     environment {
         // use the password as a global env var
         SECRET = credentials('Mysql-access')
+        EMAIL_TO = "a_responsible_person@company.org"
     }
     stages {
         stage('Checkout SCM') {
@@ -63,7 +64,9 @@ pipeline {
             echo 'Run finished with 100% success'
         }
         failure {
-            echo 'Run failed! check logs.'
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}',
+                    to: "${EMAIL_TO}",
+                    subject: 'Jenkins build failed: $PROJECT_NAME - #$BUILD_NUMBER'
         }
         changed {
             echo 'Run state has changed from last runs...'
